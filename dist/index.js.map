@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/index.ts"],
+  "sourcesContent": ["export function add(a: number, b: number): number {\n    return a * b\n}\n"],
+  "mappings": "mBAAO,SAASA,EAAIC,EAAWC,EAAmB,CAC9C,OAAOD,EAAIC,CACf",
+  "names": ["add", "a", "b"]
+}

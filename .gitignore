@@ -1,0 +1,10 @@
+# Cache.
+/.cache
+
+# Dependencies.
+/node_modules
+/npm-debug.log
+
+# Operating systems.
+.DS_Store
+Thumbs.db
