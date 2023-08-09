@@ -7,6 +7,7 @@ const context = await esbuild.context({
     bundle: true,
     entryPoints: [`src/index.ts`],
     minify: true,
+    format: `esm`,
     outdir: argv.outdir,
     plugins: [dtsPlugin()],
     sourcemap: true,

@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  fast-xml-parser:
+    specifier: 4.2.7
+    version: 4.2.7
   tslib:
     specifier: 2.6.1
     version: 2.6.1
@@ -1371,6 +1374,13 @@ packages:
       micromatch: 4.0.5
     dev: true
 
+  /fast-xml-parser@4.2.7:
+    resolution: {integrity: sha512-J8r6BriSLO1uj2miOk1NW0YVm8AGOOu3Si2HQp/cSmo6EA4m3fcwu2WKjJ4RK9wMLBtg69y1kS8baDiQBR41Ig==}
+    hasBin: true
+    dependencies:
+      strnum: 1.0.5
+    dev: false
+
   /fastq@1.13.0:
     resolution: {integrity: sha512-YpkpUnK8od0o1hmeSc7UUs/eB/vIPWJYjKck2QKIzAf71Vm1AAQ3EbuZB3g2JIy+pg+ERD0vqI79KyZiB2e2Nw==}
     dependencies:
@@ -2225,6 +2235,10 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  /strnum@1.0.5:
+    resolution: {integrity: sha512-J8bbNyKKXl5qYcR36TIO8W3mVGVHrmmxsd5PAItGkmyzwJvybiw2IVq5nqd0i4LSNSkB/sx9VHllbfFdr9k1JA==}
+    dev: false
+
   /sucrase@3.34.0:
     resolution: {integrity: sha512-70/LQEZ07TEcxiU2dz51FKaE6hCTWC6vr7FOk3Gr0U60C3shtAN+H+BFr9XlYe5xqf3RA8nrc+VIwzCfnxuXJw==}
     engines: {node: '>=8'}
@@ -2522,6 +2536,7 @@ time:
   /esbuild-plugin-copy@2.1.1: '2023-03-26T06:49:24.157Z'
   /esbuild-plugin-d.ts@1.1.0: '2021-12-11T12:12:45.428Z'
   /esbuild@0.18.17: '2023-07-26T01:41:41.377Z'
+  /fast-xml-parser@4.2.7: '2023-07-30T08:15:17.151Z'
   /minimist@1.2.8: '2023-02-09T20:59:49.233Z'
   /tslib@2.6.1: '2023-07-24T20:30:01.894Z'
   /tsx@3.12.7: '2023-04-30T00:47:35.049Z'
