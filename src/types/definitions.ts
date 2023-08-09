@@ -1,3 +1,5 @@
+import { Process } from './process'
+
 export interface Definitions {
     id: string
     targetNamespace: string
@@ -6,5 +8,5 @@ export interface Definitions {
     executionPlatform: string
     executionPlatformVersion: string
     messages: any[] // TODO: add Message type
-    processes: any[] // TODO: add Process type
+    processes: Process[]
 }
