@@ -1,5 +1,6 @@
 import { Connector, Node } from '../types'
 import { getType } from '../utils/get-type'
+import { parseExtensions } from './extensions'
 
 export function parseNode(node: any): Node {
     const type = getType(node)
@@ -14,6 +15,8 @@ export function parseNode(node: any): Node {
             outgoing.push(element[elementType][0][`#text`])
         } else if (elementType === 'extensionElements') {
             // console.log(element[elementType])
+            console.log(JSON.stringify(parseExtensions(element), null, 4))
+            console.log(JSON.stringify(element, null, 4))
         }
     }
 
