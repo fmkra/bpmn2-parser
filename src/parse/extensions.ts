@@ -24,19 +24,36 @@ export function parseExtensions(node: any) {
         }
     })
 
-    let nodeValues = node[`:@`]
+    const target = node[`:@`]?.[`@_target`]
+    const source = node[`:@`]?.[`@_source`]
+    const name = node[`:@`]?.[`@_name`]
+    const value = node[`:@`]?.[`@_value`]
+    const key = node[`:@`]?.[`@_key`]
 
-    if (nodeType === `input`) {
-        const key = nodeValues[`@_target`]
-        const value = JSON.parse(nodeValues[`@_source`].substring(1))
-
-        nodeValues = {
+    if (target && source) {
+        // iomapping
+        return {
+            [target]: source.substring(1),
+            ...extensions,
+        }
+    }
+    if (name && value) {
+        // properties
+        return {
+            [name]: value,
+            ...extensions,
+        }
+    }
+    if (key && value) {
+        // taskHeaders
+        return {
             [key]: value,
+            ...extensions,
         }
     }
 
     return {
-        ...nodeValues,
+        ...node[`:@`],
         ...extensions,
     }
 }
