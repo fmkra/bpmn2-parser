@@ -28,5 +28,5 @@
         "tsBuildInfoFile": "./.cache/tsconfig.tsbuildinfo",
         "useDefineForClassFields": true
     },
-    "include": ["./src/**/*", "src/app/@actions/create-account-and-subscription.ts"]
+    "include": ["./src/**/*"]
 }
