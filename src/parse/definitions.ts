@@ -1,9 +1,9 @@
-import { Process, Node } from '../types'
+import { Process, Node, Definitions } from '../types'
 import { getType } from '../utils/get-type'
 import parseMessage from './message'
 import { parseProcess } from './process'
 
-export function parseDefinitions(definitions: any) {
+export function parseDefinitions(definitions: any): Definitions {
     const meta = definitions[`:@`]
 
     const messages: any[] = [] // TODO: add Message type

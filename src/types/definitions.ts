@@ -1,4 +1,5 @@
 import { Process } from './process'
+import { Node } from './node'
 
 export interface Definitions {
     id: string
@@ -7,6 +8,6 @@ export interface Definitions {
     exporterVersion: string
     executionPlatform: string
     executionPlatformVersion: string
-    messages: any[] // TODO: add Message type
+    messages: Record<string, Node>
     processes: Process[]
 }
