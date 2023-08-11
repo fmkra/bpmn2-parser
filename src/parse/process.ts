@@ -3,7 +3,7 @@ import { getType } from '../utils/get-type'
 import { addPointersToConnector, parseConnector } from './connector'
 import { addPointerToNode, parseNode } from './node'
 
-export function parseProcess(process: any): Process {
+export function parseProcess(process: any, messageToNode?: Record<string, Node>): Process {
     const nodes: Node[] = []
     const connectors: Connector[] = []
 
@@ -17,7 +17,7 @@ export function parseProcess(process: any): Process {
             connectors.push(parsedConnector)
             connectorIdMap.set(parsedConnector.id, parsedConnector)
         } else if (type !== 'laneSet') {
-            const parsedNode = parseNode(element)
+            const parsedNode = parseNode(element, messageToNode)
             nodes.push(parsedNode)
             nodeIdMap.set(parsedNode.id, parsedNode)
         }

@@ -2,10 +2,12 @@ import { Connector, Node } from '../types'
 import { getType } from '../utils/get-type'
 import { parseExtensions } from './extensions'
 
-export function parseNode(node: any): Node {
+export function parseNode(node: any, messageToNode?: Record<string, Node>): Node {
     const type = getType(node)
     const incoming: string[] = []
     const outgoing: string[] = []
+    const messages: string[] = []
+    let extensions: any = undefined
 
     for (const element of node[type]) {
         const elementType = getType(element)
@@ -13,14 +15,14 @@ export function parseNode(node: any): Node {
             incoming.push(element[elementType][0][`#text`])
         } else if (elementType === 'outgoing') {
             outgoing.push(element[elementType][0][`#text`])
+        } else if (elementType === 'messageEventDefinition') {
+            messages.push(element[`:@`][`@_messageRef`])
         } else if (elementType === 'extensionElements') {
-            // console.log(element[elementType])
-            console.log(JSON.stringify(parseExtensions(element), null, 4))
-            console.log(JSON.stringify(element, null, 4))
+            extensions = parseExtensions(element)
         }
     }
 
-    return {
+    const newNode = {
         type,
         id: node[`:@`][`@_id`],
         name: node[`:@`][`@_name`],
@@ -28,7 +30,14 @@ export function parseNode(node: any): Node {
         // will be overwritten in parse/process.ts
         incoming: incoming as any,
         outgoing: outgoing as any,
+        extensions,
     }
+    if (messageToNode) {
+        for (const msg of messages) {
+            messageToNode[msg] = newNode
+        }
+    }
+    return newNode
 }
 
 export function addPointerToNode(node: Node, map: Map<string, Connector>) {

@@ -6,4 +6,5 @@ export interface Node {
     name?: string
     incoming: Connector[]
     outgoing: Connector[]
+    extensions?: any
 }

@@ -1,5 +1,6 @@
-import { Definitions, Process } from '../types'
+import { Process, Node } from '../types'
 import { getType } from '../utils/get-type'
+import parseMessage from './message'
 import { parseProcess } from './process'
 
 export function parseDefinitions(definitions: any) {
@@ -7,6 +8,8 @@ export function parseDefinitions(definitions: any) {
 
     const messages: any[] = [] // TODO: add Message type
     const processes: Process[] = []
+    const messageToNode: Record<string, Node> = {}
+    const parsedMessages: Record<string, Node> = {}
 
     for (const definition of definitions.definitions) {
         const type = getType(definition)
@@ -15,9 +18,14 @@ export function parseDefinitions(definitions: any) {
                 messages.push(definition)
                 break
             case 'process':
-                processes.push(parseProcess(definition))
+                processes.push(parseProcess(definition, messageToNode))
                 break
         }
+    }
+
+    for (const msg of messages) {
+        const [key, val] = parseMessage(msg, messageToNode)
+        if (val) parsedMessages[key] = val
     }
 
     return {
@@ -27,7 +35,7 @@ export function parseDefinitions(definitions: any) {
         exporterVersion: meta[`@_exporterVersion`],
         executionPlatform: meta[`@_executionPlatform`],
         executionPlatformVersion: meta[`@_executionPlatformVersion`],
-        messages: messages,
+        messages: parsedMessages,
         processes: processes,
     }
 }
