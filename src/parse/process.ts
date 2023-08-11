@@ -6,6 +6,7 @@ import { addPointerToNode, parseNode } from './node'
 export function parseProcess(process: any, messageToNode?: Record<string, Node>): Process {
     const nodes: Node[] = []
     const connectors: Connector[] = []
+    const startNodes: Node[] = []
 
     const nodeIdMap = new Map<string, Node>()
     const connectorIdMap = new Map<string, Connector>()
@@ -20,6 +21,9 @@ export function parseProcess(process: any, messageToNode?: Record<string, Node>)
             const parsedNode = parseNode(element, messageToNode)
             nodes.push(parsedNode)
             nodeIdMap.set(parsedNode.id, parsedNode)
+            if (parsedNode.type == `startEvent`) {
+                startNodes.push(parsedNode)
+            }
         }
     }
 
@@ -35,5 +39,6 @@ export function parseProcess(process: any, messageToNode?: Record<string, Node>)
         isExecutable: process[`:@`][`@_isExecutable`] === 'true',
         nodes,
         connectors,
+        startNodes,
     }
 }

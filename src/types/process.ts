@@ -5,5 +5,6 @@ export interface Process {
     id: string
     isExecutable: boolean
     nodes: Node[]
+    startNodes: Node[]
     connectors: Connector[]
 }
